@@ -18,7 +18,7 @@ public class CustomModelMapper {
         List<Destination> destinationList = new ArrayList<Destination>();
 
         for(Origin o : origin){
-            destinationList.add(mapper.map(o.destination));
+            destinationList.add(mapper.map(o, destination));
         }
         return destinationList;
     }
