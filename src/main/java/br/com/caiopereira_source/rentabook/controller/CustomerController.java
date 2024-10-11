@@ -35,4 +35,16 @@ public class CustomerController {
         var list = service.findAll();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable(name = "id") long id){
+        service.delete(id);
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping
+    public ResponseEntity<CustomerDto> update(@RequestBody CustomerDto customerDto){
+        CustomerDto customer = service.update(customerDto);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }
 }

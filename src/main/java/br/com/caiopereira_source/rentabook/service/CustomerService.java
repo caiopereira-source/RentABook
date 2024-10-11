@@ -32,12 +32,7 @@ public class CustomerService {
         found.setFullName(customerDto.getFullName());
         found.setGender(customerDto.getGender());
         found.setBirthDate(customerDto.getBirthDate());
-
-        // *_*
-        CityModel city = repository.findById(customerDto.getCity().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Cidade não encontrada!")).getCity();
-
-        found.setCity(city);
+        found.setCity(CustomModelMapper.parseObject(customerDto.getCity(), CityModel.class));
 
         return CustomModelMapper.parseObject(repository.save(found), CustomerDto.class);
     }
